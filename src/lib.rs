@@ -1,5 +1,5 @@
-use std::error::Error;
 use question::Answer;
+use question::AnswerError;
 
 mod question;
 
@@ -23,8 +23,6 @@ impl Config {
 }
 
 pub fn run(config: Config) {
-    let question_number = config.question;
-
     let answers = match config.question {
         None => answer_all(),
         Some(i) => {
@@ -33,10 +31,10 @@ pub fn run(config: Config) {
             result
         },
     };
-    for (index, answer) in answers.iter().enumerate() {
-        match answer.result {
+    for answer in answers {
+        match &answer.result {
             Ok(x) => {
-                println!("The answer to question {} is...", index);
+                println!("The answer to question {} is...", answer.question);
                 println!("{}", x)
             },
             Err(e) => {
@@ -57,6 +55,6 @@ fn answer_all() -> Vec<question::Answer> {
 fn answer_question(question_number: usize) -> Answer {
     match question_number {
         1 => question::question_1::answer(),
-        _ => Answer { result: Err(format!("Implementation not found for {}", question_number)), question: 0 }
+        _ => Answer { result: Err(Box::new(AnswerError(format!("Implementation not found for {}", question_number)))), question: 0 }
     }
 }
