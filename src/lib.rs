@@ -3,6 +3,7 @@ use question::AnswerError;
 
 mod question;
 
+const MAX_QUESTION: usize = 2;
 
 pub struct Config {
     pub question: Option<usize>,
@@ -35,7 +36,7 @@ pub fn run(config: Config) {
         match &answer.result {
             Ok(x) => {
                 println!("The answer to question {} is...", answer.question);
-                println!("{}", x)
+                println!("{}", x);
             },
             Err(e) => {
                 println!("Application error: {}", e);
@@ -46,7 +47,7 @@ pub fn run(config: Config) {
 
 fn answer_all() -> Vec<question::Answer> {
     let mut results = Vec::new();
-    for i in 1..2 {
+    for i in 1..(MAX_QUESTION + 1) {
         results.push(answer_question(i));
     }
     results
@@ -55,6 +56,7 @@ fn answer_all() -> Vec<question::Answer> {
 fn answer_question(question_number: usize) -> Answer {
     match question_number {
         1 => question::question_1::answer(),
+        2 => question::question_2::answer(),
         _ => Answer { result: Err(Box::new(AnswerError(format!("Implementation not found for {}", question_number)))), question: 0 }
     }
 }
