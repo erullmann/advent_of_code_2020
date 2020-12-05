@@ -1,4 +1,3 @@
-use std::fs;
 use std::error::Error;
 use std::collections::HashMap;
 
@@ -8,15 +7,11 @@ use std::collections::HashMap;
 const REQUIRED_SUM: usize = 2020;
 
 pub fn answer() -> super::Answer {
-    let file = get_file();
+    let file = super::get_file("data/day_1/input.txt");
     match file {
         Err(_) => super::Answer{ result: file, question: 1 },
         Ok(contents) => super::Answer{ result: expense_report(contents), question: 1 }
     }
-}
-
-fn get_file() -> Result<String, Box<dyn Error>> {
-    Ok(fs::read_to_string("data/day_1/input.txt")?)
 }
 
 fn expense_report(contents: String) -> Result<String, Box<dyn Error>> {
