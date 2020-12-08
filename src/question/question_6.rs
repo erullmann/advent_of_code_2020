@@ -6,8 +6,8 @@ use super::question_5::Slope;
 pub fn answer() -> super::Answer {
     let file = super::get_file("data/day_3/input.txt");
     match file {
-        Err(_) => super::Answer{ result: file, question: 5 },
-        Ok(contents) => super::Answer{ result: Ok(consider_all_slopes(contents).to_string()), question: 5 }
+        Err(_) => super::Answer{ result: file, question: 6 },
+        Ok(contents) => super::Answer{ result: Ok(consider_all_slopes(contents).to_string()), question: 6 }
     }
 }
 
