@@ -6,6 +6,8 @@ pub mod question_1;
 pub mod question_2;
 pub mod question_3;
 pub mod question_4;
+pub mod question_5;
+pub mod question_6;
 
 pub struct Answer {
     pub result: Result<String, Box<dyn Error>>,
