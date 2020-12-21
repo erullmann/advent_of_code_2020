@@ -55,7 +55,6 @@ impl Passport {
         for capture in passport_line_regex.captures_iter(line) {
             let field = capture.get(1).unwrap().as_str();
             let value = capture.get(2).unwrap().as_str().to_string();
-            println!("added field {}, value {}", field, value);
             
             match field {
                 "ecl" => self.ecl = Some(value),
