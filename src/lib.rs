@@ -3,7 +3,7 @@ use question::AnswerError;
 
 mod question;
 
-const MAX_QUESTION: usize = 4;
+const MAX_QUESTION: usize = 7;
 
 pub struct Config {
     pub question: Option<usize>,
@@ -61,7 +61,8 @@ fn answer_question(question_number: usize) -> Answer {
         4 => question::question_4::answer(),
         5 => question::question_5::answer(),
         6 => question::question_6::answer(),
-
+        7 => question::question_7::answer(),
+		
         _ => Answer { result: Err(Box::new(AnswerError(format!("Implementation not found for {}", question_number)))), question: 0 }
     }
 }

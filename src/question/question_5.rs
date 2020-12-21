@@ -20,7 +20,6 @@ pub struct Slope {
 
 pub fn count_trees(contents: &String, slope: Slope) -> usize {
     let slope_width = contents.lines().next().unwrap().len();
-    println!("slope width {}", slope_width);
     let mut horizontal_index = 0;
     let mut tree_count = 0;
 
@@ -28,13 +27,8 @@ pub fn count_trees(contents: &String, slope: Slope) -> usize {
         if (vertical_index % slope.rise) == 0 {
             let terrain: char  = line.get(0..horizontal_index+1).unwrap().chars().last().unwrap();
 
-            println!("terrain {}, {}, {}", terrain, vertical_index, horizontal_index);
-
             if terrain == '#' {
                 tree_count += 1
-            }
-            if terrain == '\n' {
-                println!("newline!")
             }
             horizontal_index = advance_slope(horizontal_index, &slope, slope_width);
         }
