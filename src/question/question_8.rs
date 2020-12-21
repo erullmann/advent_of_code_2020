@@ -16,7 +16,7 @@ pub fn answer() -> super::Answer {
 
 impl Passport {
     pub fn valid_and_correct(&self) -> bool {
-        if !self,valid() {
+        if !self.valid() {
             return false;
         }
         

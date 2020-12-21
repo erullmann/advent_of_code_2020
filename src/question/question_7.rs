@@ -72,7 +72,7 @@ impl Passport {
     }
 }
 
-pub fn count_correct_passports(contents: &String) -> usize {
+fn count_correct_passports(contents: &String) -> usize {
     let mut passport_count = 0;
     let mut current_passport = Passport::new();
 
